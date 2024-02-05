@@ -1,5 +1,4 @@
 sonlar = list(range(120,1201,2))
-# print(sonlar)
 
 print(sum(sonlar))
 print(max(sonlar),min(sonlar))
