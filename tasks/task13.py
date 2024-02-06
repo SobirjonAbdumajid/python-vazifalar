@@ -1,5 +1,4 @@
-# 1-task            
-              # ismlar = ['Sobirjon','Sardor','Abbos',"Abduqahhor",'Umidjon']
+# 1-task            # ismlar = ['Sobirjon','Sardor','Abbos',"Abduqahhor",'Umidjon']
 #             for ism in ismlar:
 #                 print(f'Assalomu alaykum, {ism}')
 #             print(f'Kod {len(ismlar)} marta takrorlandi')

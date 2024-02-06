@@ -6,8 +6,7 @@ salery = float(input('Oylik: '))
 result = (salery-(salery*3.8)/100)*12
 
 print(f'{ism} {familiya}ning oyligi:',float(result))
-# 1-task            
-            # ismlar = ['Sobirjon','Sardor','Abbos',"Abduqahhor",'Umidjon']
+# 1-task            # ismlar = ['Sobirjon','Sardor','Abbos',"Abduqahhor",'Umidjon']
             # for ism in ismlar:
             #     print(f'Assalomu alaykum, {ism}')
             # print(f'Kod {len(ismlar)} marta takrorlandi')
