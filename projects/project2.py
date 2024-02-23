@@ -9,16 +9,24 @@ Siz ombor  tizimini boshqaradigan kompyuter dasturini loyihalash va ishlab chiqi
 '''
 
 mahsulotlar = []
-n_of_products = int(input('Nechta mahsulot qo\'shmoqchisiz: '))
-for n in range(n_of_products):
-    mahsulotlar.append(input(f'{n + 1} - mahsulot: '))
-
-n_of_ishlatilgan_mahsulotlar = int(input('Nechta mahsulot ishlatildi: '))
+print('Omborga mahsulotlar qo\'shing (stop tuhtatish): ')
+n = 1
+while True:
+    mahsulotlar.append(input(f'{n} - mahsulot: '))
+    n+=1
+    if 'stop' in mahsulotlar:
+        mahsulotlar.remove('stop')
+        break
+print('Ishlatilgan mahsulotlarni kiriting (stop tuhtatish): ')
 
 ishlatilgan_mahsulot = []
 
-for i_m in range(n_of_ishlatilgan_mahsulotlar):
+while True:
     ishlatilgan_mahsulot.append(input('Qaysi mahsulotlar ishlatildi: '))
+    if 'stop' in ishlatilgan_mahsulot:
+        ishlatilgan_mahsulot.remove('stop')
+        break
+
 
 for i_m in ishlatilgan_mahsulot:
     if i_m in mahsulotlar:

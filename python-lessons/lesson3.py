@@ -82,5 +82,5 @@ toys = list(toys) # bu usul bilan o'zgarmas tupleni listga aylantirib o'zgartirs
 toys = tuple(toys)
 
 print(type(toys))
-toys.remove('bus')
+# toys.remove('bus')
 print(toys)
