@@ -18,7 +18,7 @@ def menu_chiqar():
 
 
 
-def buyurtma_qabul_qil(menu):
+def buyurtma_qabul_qil(menu): # def buyurtma_qabul_qil(menu: int) -> bool:
     '''Buyurmat qabul qiladigan funksiya'''
     buyurtmalar = {}
     n = 1
@@ -48,6 +48,7 @@ def buyurtma_qabul_qil(menu):
 
 
 def narh_ayt(menu, buyurtmalar,mahsulot,soni):
+    '''Narxini chiqarib beradigan funksiya'''
     result = menu[mahsulot] * soni
     print(f'{result} so\'m bo\'ldi,')
     buyurtmalar[mahsulot] = [result,soni]
