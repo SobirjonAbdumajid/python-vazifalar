@@ -7,7 +7,7 @@ bot = telebot.TeleBot(TOKEN, parse_mode=None)
 
 @bot.message_handler(commands = ['start'])
 def send_welcome(message):
-    response = 'Assalomu alaykum, Rayhona opa?'
+    response = 'Assalomu alaykum?'
     response += '\nKirilchani lotinchaga yoki lotinchani kirilchaga o\'tqizib ko\'ring hohlasyz:'
     bot.reply_to(message,response)
 
