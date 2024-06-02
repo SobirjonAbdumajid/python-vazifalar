@@ -9,7 +9,7 @@ def choose_word():
 
 def find_number(random_word):
     length = len(random_word)
-    print(f'\nI thought of a {length} letter word can you find it?')
+    print(f'\nI thought of a {length} letter word can you find it?', random_word)
 
     counter = 0
     all_letters = []
