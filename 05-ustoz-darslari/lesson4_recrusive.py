@@ -8,23 +8,35 @@
 # print(find_factarial(5))
 
 
-# 2
-def find_sum(n):
-    birlik = n % 10
-    onlik = (n//10)%10
-    yuzlik = n//100
+# # 2
+# def find_sum(n):
+#     birlik = n % 10
+#     onlik = (n//10)%10
+#     yuzlik = n//100
     
-    return birlik + onlik + yuzlik
+#     return birlik + onlik + yuzlik
 
 # print(find_sum(318))
 
-# print((134//10)%10)
 
 
+# # 3
+# def find_sum_of(n):
+#     if n < 10:
+#         return n
+#     return n % 10 + find_sum_of(n//10)
+
+# print(find_sum_of(123))
+
+
+# 3
 def find_sum_of(n):
-    result = 0
-    if len(n) == 1:
-        result += n
-    return n,find_sum(n//10)
+    # Base case: if n is a single-digit number, return n itself
+    if n < 10:
+        return n
+    else:
+        # Recursive case: last digit + sum of remaining digits
+        return n % 10 + find_sum_of(n // 10)
 
-print(find_sum(123))
+# Example usage
+print(find_sum_of(123))
