@@ -2,18 +2,22 @@
 # _list = [x for x in range(1,5)]
 # print(_list)
 
+
 # # 2
 # _set = {y for y in range(1,5)}
 # print(_set)
+
 
 # # 3
 # names = ["Alex", "Ivan", "Sergey"]
 # _dict = {x:y for x, y in enumerate(names)}
 # print(_dict)
 
+
 # # 4
 # _tuple = (y for y in range(1,5)) # bu generator bo'ladi
 # print(_tuple)
+
 
 # # 5
 # def gen_list():
@@ -23,11 +27,13 @@
 # for x in l:
 #     print(x ** 2)
 
+
 # # 5
 # while names:
 #     for i, v in enumerate(names):
 #         x = names.pop(i)
 # print(names)
+
 
 # # 6
 # def gen_of(x):
@@ -68,15 +74,48 @@
 #     print(i)
 
 
-# 9
-def task():
-    for i in range(12):
-        if i % 4 == 0 and i % 6 == 0:
-            continue
-        elif i % 4 == 0 :
-            yield i
-        elif i % 6 == 0 :
-            yield i
+# # 9
+# def task():
+#     for i in range(12):
+#         if i % 4 == 0 and i % 6 == 0:
+#             continue
+#         elif i % 4 == 0 :
+#             yield i
+#         elif i % 6 == 0 :
+#             yield i
 
-for x in task():
-    print(x)
+# for x in task():
+#     print(x)
+
+
+# 10
+veg = ["apple banana apple", "banana orange apple", "orange apple"]
+a = 0
+b = 0
+o = 0
+for i, v in enumerate(veg):
+    v = v.split()
+    print(v)
+    
+    num_of_a = v.count('apple')
+    num_of_b = v.count('banana')
+    num_of_o = v.count('orange')
+    a += num_of_a
+    b += num_of_b
+    o += num_of_o
+# print(a)
+# print(b)
+# print(o)
+
+# 11
+def count_generator(strings):
+    word_count = {}
+    for string in strings:
+        for word in string.split():
+            word_count[word] = word_count.get(word, 0) + 1
+    yield word_count
+
+
+text_list = ["apple banana apple", "banana orange apple", "orange apple pig"]
+for result in count_generator(text_list):
+    print(result)
