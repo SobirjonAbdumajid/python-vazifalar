@@ -88,34 +88,37 @@
 #     print(x)
 
 
-# 10
-veg = ["apple banana apple", "banana orange apple", "orange apple"]
-a = 0
-b = 0
-o = 0
-for i, v in enumerate(veg):
-    v = v.split()
-    print(v)
+# # 10
+# veg = ["apple banana apple", "banana orange apple", "orange apple"]
+# a = 0
+# b = 0
+# o = 0
+# for i, v in enumerate(veg):
+#     v = v.split()
+#     print(v)
     
-    num_of_a = v.count('apple')
-    num_of_b = v.count('banana')
-    num_of_o = v.count('orange')
-    a += num_of_a
-    b += num_of_b
-    o += num_of_o
-# print(a)
-# print(b)
-# print(o)
+#     num_of_a = v.count('apple')
+#     num_of_b = v.count('banana')
+#     num_of_o = v.count('orange')
+#     a += num_of_a
+#     b += num_of_b
+#     o += num_of_o
+# # print(a)
+# # print(b)
+# # print(o)
+
 
 # 11
-def count_generator(strings):
-    word_count = {}
-    for string in strings:
-        for word in string.split():
-            word_count[word] = word_count.get(word, 0) + 1
-    yield word_count
+veg = ["apple banana apple", "banana orange apple", "orange apple"]
 
 
-text_list = ["apple banana apple", "banana orange apple", "orange apple pig"]
-for result in count_generator(text_list):
-    print(result)
+def count_generator(veg: list[str]):
+    counter_of = {}
+    for i in veg:
+        for j in i.split():
+            counter_of[j] = counter_of.get(j, 0) + 1
+    yield counter_of
+
+for i in count_generator(veg):
+    print(i)
+    
