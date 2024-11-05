@@ -68,6 +68,7 @@
 # print(cat2.__dict__)
 
 
+# 4
 class Dogs:
     def set_attribute(self, name, age, breed, weight=False):
         self.name = name
