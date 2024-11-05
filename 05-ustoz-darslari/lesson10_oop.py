@@ -68,22 +68,22 @@
 # print(cat2.__dict__)
 
 
-# 4
-class Dogs:
-    def set_attribute(self, name, age, breed, weight=False):
-        self.name = name
-        self.age = age
-        self.weight = weight
-        self.breed = breed
+# # 4
+# class Dogs:
+#     def set_attribute(self, name, age, breed, weight=False):
+#         self.name = name
+#         self.age = age
+#         self.weight = weight
+#         self.breed = breed
         
-    def get_attribute(self):
-        return self.name, self.age, self.breed, self.weight
+#     def get_attribute(self):
+#         return self.name, self.age, self.breed, self.weight
     
-    def bark(self):
-        if self.weight:
-            return 'This is ' + self.breed
+#     def bark(self):
+#         if self.weight:
+#             return 'This is ' + self.breed
     
-dog1 = Dogs()
+# dog1 = Dogs()
 
-dog1.set_attribute('John', 12, 'Apcharka', 321)
-print(dog1.bark())
+# dog1.set_attribute('John', 12, 'Apcharka', 321)
+# print(dog1.bark())
