@@ -25,13 +25,39 @@
 # # print(Cats().name)
 
 
-class Cats:
-    name = "Pishak"
+# # 2
+# class Cats:
+#     name = "Pishak"
     
-    def get_pishak_name(self):
-        return 'Meow ' + self.name
+#     def get_pishak_name(self):
+#         return 'Meow ' + self.name
     
-cat1 = Cats()
-print(cat1.get_pishak_name())
+# cat1 = Cats()
+# print(cat1.get_pishak_name())
     
 
+
+# 3
+class Cats:
+    
+    def set_name(self, name, color, age):
+        """
+        Example class function
+        """
+        
+        self.name = name
+        self.color = color
+        self.age = age
+    
+    def get_name(self):
+        return self.name, self.color, self.age
+    
+
+cat1 = Cats() # instance
+cat2 = Cats()
+
+cat1.set_name('Oppoqoy', 'black', 1)
+
+setattr(cat2, 'color', 'white')
+setattr(cat2, 'age', 12)
+print(getattr(cat2, 'name'))
