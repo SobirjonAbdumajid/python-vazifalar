@@ -14,19 +14,17 @@
 
 
 # # 2
-class Rectangle:
-    def __init__(self, height, width):
-        self.height = height
-        self.width = width
+# class Rectangle(object):
+#     def __init__(self, height, width):
+#         self.height = height
+#         self.width = width
     
-    def find_area(self):
-        return self.height * self.width
+#     def find_area(self):
+#         return self.height * self.width
     
-    def find_perimeter(self):
-        return 2 * (self.height + self.width)
+#     def find_perimeter(self):
+#         return 2 * (self.height + self.width)
 
-rectangle = Rectangle(height=12, width=13)
+# rectangle = Rectangle(3, 2)
 
-print(rectangle.find_area())
-
-
+# print(rectangle.find_perimeter())
