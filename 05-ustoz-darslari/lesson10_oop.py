@@ -70,24 +70,35 @@
 
 # 4
 class Dogs:
-    def set_attribute(self, name, age, breed, weight=False):
+    def set_attribute(self, name, age, bread, weight=False):
         self.name = name
         self.age = age
+        self.bread = bread
         self.weight = weight
-        self.breed = breed
         
     def get_attribute(self):
-        return self.name, self.age, self.breed, self.weight
+        return self.name, self.age, self.bread, self.weight
     
     def bark(self):
         if self.weight:
-            return 'This is ' + self.breed
+            return 'This is ' + self.bread
+        
     
 dog1 = Dogs()
-dog2 = Dogs()
 
-dog1.set_attribute('John', 12, 'Apcharka', 321)
-dog2.set_attribute('BOSHQA', 2, 'LAYCHA', 31)
+dog1.set_attribute('John', 12, None)
+
+# print(dog1.get_attribute())
+# print(dog2.get_attribute())
 
 print(dog1.get_attribute())
-print(dog2.get_attribute())
+
+
+setattr(dog1, 'name', 'Oppog\'oy')
+setattr(dog1, 'bread', False)
+if hasattr(dog1, 'bread'):
+    print(hasattr(dog1, 'weibjhbght'))
+    print(hasattr(dog1, 'bread'))
+    setattr(dog1, 'weight', 12)
+
+print(dog1.get_attribute())
