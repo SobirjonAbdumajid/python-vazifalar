@@ -1,16 +1,17 @@
-# # 1
-# class Point:
-#     def __init__(self):
-#         print("Call __init__")
+# 1
+class Point:
+    def __init__(self):
+        print("Call __init__")
     
-#     def __del__(self):
-#         print("call __del__")
+    def __del__(self):
+        
+        print("call __del__")
     
-#     def aggregate_function(self):
-#         print("Call abregate_function in Point")
+    def aggregate_function(self):
+        print("Call abregate_function in Point")
     
-# pt = Point()
-# print(pt.aggregate_function())
+pt = Point()
+print(pt.aggregate_function())
 
 
 # # 2
