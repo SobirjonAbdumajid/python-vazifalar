@@ -67,6 +67,51 @@
 #         self.suvn
         
 
+class Cars:
+    def get_sedan():
+        sedan_cars = {
+        "1": "Toyota Camry",
+        "2": "Honda Accord",
+        "3": "Mazda6",
+        "4": "BMW 3 Series",
+        "5": "Mercedes-Benz C-Class"
+        }
+
+    hatchback_cars = {
+        "1": "Volkswagen Golf",
+        "2": "Ford Focus",
+        "3": "Hyundai i30",
+        "4": "Honda Civic Hatchback",
+        "5": "Mazda3 Hatchback"
+    }
+
+    coupe_cars = {
+        "1": "Ford Mustang",
+        "2": "Chevrolet Camaro",
+        "3": "BMW 4 Series",
+        "4": "Audi A5",
+        "5": "Mercedes-Benz C-Class Coupe"
+    }
+
+    minivan_cars = {
+        "1": "Honda Odyssey",
+        "2": "Toyota Sienna",
+        "3": "Chrysler Pacifica",
+        "4": "Kia Carnival",
+        "5": "Dodge Grand Caravan"
+    }
+
+    suv_cars = {
+        "1": "Toyota RAV4",
+        "2": "Honda CR-V",
+        "3": "Ford Explorer",
+        "4": "Chevrolet Tahoe",
+        "5": "Jeep Grand Cherokee"
+    }
+
+
+
+
 def find_type_and_price(car):
     _dict = {"Sedan":21000, "Hatchback":20000, "Coupe":22000, "Minivan":12000, "Suv":25000}
     price = _dict.get(car)
@@ -75,8 +120,8 @@ def find_type_and_price(car):
     return car, price
         
 
-def main():
-    _list = ["Sedan", "Hatchback", "Coupe", "Minivan", "Suv"]
+
+def find_car_type(_list):
     while True:
         print("""
         1. Sedan
@@ -87,17 +132,31 @@ def main():
         """)
         try:
             carType = int(input("Tanlang: "))
-            print(_list[carType + 1] + "ni tanladingiz")
+            print(_list[carType - 1] + "ni tanladingiz")
         except:
-            print('Son kiriting!')
+            print('Faqat son kiriting!\n1,2,3,4,5')
             continue
+        else:
+            return _list[carType - 1]
         
         
+
+def find_car_model(_dict, carType):
+    
+    while True:
         print(f"""
-            1. {carType} Model A - $20000
-            2. {carType} Sedan Model B - $22000
-            3. {carType} Model C - $25000
+            1. {carType} Model A - ${_dict.get(carType)}
+            2. {carType} Sedan Model B - ${_dict.get(carType)}
+            3. {carType} Model C - ${_dict.get(carType)}
               """)
 
+def main():
+    
+    
+    
+    
+    _list = ["Sedan", "Hatchback", "Coupe", "Minivan", "Suv"]
+    carType = find_car_type(_list)
+    find_car_model(_dict, carType)
         
 main()
