@@ -7,3 +7,7 @@ class Cat:
     
     def __str__(self):
         return self.name
+    
+ct = Cat("Alex")
+print(ct)
+print(str(ct))
