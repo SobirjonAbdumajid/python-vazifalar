@@ -100,12 +100,15 @@ class Number:
         return str(self.num)
     
     def __len__(self):
+        # if self.num < 0:
+        #     self.num = self.num * -1
+        # return len(str(self.num))
         return len(str(abs(self.num)))
     
     def __abs__(self):
         return abs(self.num)
     
-number = Number(-2182)
+number = Number(-182) # instance
 print('len', len(number))
 print('str', number)
 print('repr', repr(number))
