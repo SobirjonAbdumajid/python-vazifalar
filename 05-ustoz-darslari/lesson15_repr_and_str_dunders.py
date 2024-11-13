@@ -45,18 +45,42 @@
 # print(list(map(abs, numbers)))
 
 
-# 5
-class Point:
+# # 5
+# class Point:
+#     def __init__(self, *args):
+#         self.__coords = args
+    
+#     def __len__(self):
+#         return len(self.__coords)
+    
+#     def __abs__(self):
+#         return list(map(abs, self.__coords))
+    
+# pt = Point(1,2,3,4,5,-6)
+# print(len(pt))
+
+# print(abs(pt))
+
+
+# 6
+class Number:
     def __init__(self, *args):
-        self.__coords = args
+        self.num = args
+    
+    def __repr__(self):
+        return f'{self.__class__}: {self.num}'
+    
+    def __str__(self):
+        return str(self.num)
     
     def __len__(self):
-        return len(self.__coords)
+        return len(str(self.num[0]))
     
     def __abs__(self):
-        return list(map(abs, self.__coords))
+        return list(map(abs, self.num))
     
-pt = Point(1,2,3,4,5,-6)
-print(len(pt))
-
-print(abs(pt))
+number = Number(-12)
+print(len(number))
+print(abs(number))
+print(number)
+print(abs(number))
