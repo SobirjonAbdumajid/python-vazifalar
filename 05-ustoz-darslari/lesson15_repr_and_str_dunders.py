@@ -62,10 +62,36 @@
 # print(abs(pt))
 
 
-# 6
+# # 6
+# class Number:
+#     def __init__(self, *args):
+#         self.num = args
+    
+#     def __repr__(self):
+#         return f'{self.__class__}: {self.num}'
+    
+#     def __str__(self):
+#         return str(self.num)
+    
+#     def __len__(self):
+#         _list = list(self.num[:])
+#         if _list[0] < 0:
+#             _list[0] = _list[0] * -1
+#         return len(str(_list[0]))
+    
+#     def __abs__(self):
+#         return list(map(abs, self.num))
+    
+# number = Number(182)
+# print('len', len(number))
+# print(number)
+# print('abs', abs(number))
+
+
+# 7
 class Number:
-    def __init__(self, *args):
-        self.num = args
+    def __init__(self, num):
+        self.num = num
     
     def __repr__(self):
         return f'{self.__class__}: {self.num}'
@@ -74,13 +100,13 @@ class Number:
         return str(self.num)
     
     def __len__(self):
-        return len(str(self.num[0]))
+        return len(str(abs(self.num)))
     
     def __abs__(self):
-        return list(map(abs, self.num))
+        return abs(self.num)
     
-number = Number(-12)
-print(len(number))
-print(abs(number))
-print(number)
-print(abs(number))
+number = Number(-2182)
+print('len', len(number))
+print('str', number)
+print('repr', repr(number))
+print('abs', abs(number))
