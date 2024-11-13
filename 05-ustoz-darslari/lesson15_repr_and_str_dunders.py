@@ -33,14 +33,30 @@
 # print(len(pt))
 
 
-# 4
-def square(x):
-    return x * x
+# # 4
+# def square(x):
+#     return x * x
 
-numbers = [1, 2, 3, 4, 5, -3]
+# numbers = [1, 2, 3, 4, 5, -3]
 
-squared_numbers = map(square, numbers)
+# squared_numbers = map(square, numbers)
 
-print(list(squared_numbers))  # Output: [1, 4, 9, 16, 25]
-print(list(map(abs, numbers)))
+# print(list(squared_numbers))  # Output: [1, 4, 9, 16, 25]
+# print(list(map(abs, numbers)))
 
+
+# 5
+class Point:
+    def __init__(self, *args):
+        self.__coords = args
+    
+    def __len__(self):
+        return len(self.__coords)
+    
+    def __abs__(self):
+        return list(map(abs, self.__coords))
+    
+pt = Point(1,2,3,4,5,-6)
+print(len(pt))
+
+print(abs(pt))
