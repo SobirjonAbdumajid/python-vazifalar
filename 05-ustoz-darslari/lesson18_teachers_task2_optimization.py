@@ -1,4 +1,3 @@
-
 class Cars:
     @staticmethod
     def get_cars():
