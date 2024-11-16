@@ -17,19 +17,41 @@
 # print(None == None)
 
 
-# 2
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+# # 2
+# class Point:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
         
-    def __bool__(self):
-        print("__bool__")
-        return self.x == self.y
+#     def __bool__(self):
+#         print("__bool__")
+#         return self.x == self.y
     
-pt = Point(0, 1)
+# pt = Point(0, 1)
 
-if pt:
-    print('object pt give true')
-else:
-    print('false')
+# if pt:
+#     print('object pt give true')
+# else:
+#     print('false')
+
+
+class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = list(marks)
+
+    def __getitem__(self, item):
+        return self.marks[item]
+    
+    def __setitem__(self, key, value):
+        self.marks[key] = value
+        
+    def __delitem__(self, key):
+        del self.marks[key]
+        
+s1 = Student('Sergey', [5,5,3,2,5])
+print(s1[2])
+s1[2] = 4
+print(s1[2])
+del s1[2]
+print(s1[2])
