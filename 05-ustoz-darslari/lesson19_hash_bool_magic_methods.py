@@ -35,23 +35,58 @@
 #     print('false')
 
 
-class Student:
-    def __init__(self, name, marks):
-        self.name = name
-        self.marks = list(marks)
+# # 3
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = list(marks)
 
-    def __getitem__(self, item):
-        return self.marks[item]
+#     def __getitem__(self, item):
+#         return self.marks[item]
     
-    def __setitem__(self, key, value):
-        self.marks[key] = value
+#     def __setitem__(self, key, value):
+#         self.marks[key] = value
         
-    def __delitem__(self, key):
-        del self.marks[key]
+#     def __delitem__(self, key):
+#         del self.marks[key]
         
-s1 = Student('Sergey', [5,5,3,2,5])
-print(s1[2])
-s1[2] = 4
-print(s1[2])
-del s1[2]
-print(s1[2])
+# s1 = Student('Sergey', [5,5,3,2,5])
+# print(s1[2])
+# s1[2] = 4
+# print(s1[2])
+# del s1[2]
+# print(s1[2])
+
+class Geom:
+    name = "Geom"
+    
+    def draw(self):
+        print('Draw geom')
+        
+    
+
+class Line(Geom):
+    name = "Line"
+    
+    def draw(self):
+        print('Draw Line')
+        
+    
+
+class Circle(Geom):
+    name = "Circle"
+    
+    def draw(self):
+        print('Draw Circle')
+     
+        
+class Rectangle:
+    def draw(self):
+        print('Draw Rectangle')
+      
+
+print(issubclass(Geom, Circle))
+
+# g = Geom()
+        
+    
