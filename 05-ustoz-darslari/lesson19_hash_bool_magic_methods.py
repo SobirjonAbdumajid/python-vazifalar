@@ -85,7 +85,7 @@ class Rectangle:
         print('Draw Rectangle')
       
 
-print(issubclass(Geom, Circle))
+print(issubclass(object, Circle))
 
 # g = Geom()
         
