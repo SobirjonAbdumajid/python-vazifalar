@@ -38,9 +38,9 @@ class Purchase:
             ]}
         }
         self.colors = {
-            1: ("Black", 0.02),
+            1: ("Black", 0.2),
             2: ("White", 0.0),
-            3: ("Gray", 0.01)
+            3: ("Gray", 0.1)
         }
 
     def select_car(self):
@@ -50,93 +50,72 @@ class Purchase:
             print(f'{key}. {car['type']}')
         
         while True:
-            user_car = int(input('Raqam kiriting: '))
-            if user_car
-        # print("Please select a car type from the following options:")
-        # for key, car in self.cars.items():
-        #     print(f"{key}. {car['type']}")
-        # while True:
-        #     try:
-        #         car_choice = int(input("Enter the number: "))
-        #         if car_choice in self.cars:
-        #             selected_car = self.cars[car_choice]
-        #             print(f"You have selected: {selected_car['type']}")
-        #             return selected_car
-        #         else:
-        #             print("Invalid selection. Please try again.")
-        #     except ValueError:
-        #         print("Please enter a valid number.")
+            try:
+                option_car = int(input('Raqam kiriting: '))
+                user_car = self.cars[option_car]
+                print(f'{user_car['type']}\'ni tanladingiz!' )
+                return user_car
+            except:
+                print('Iltimos, yaroqli raqam kiriting')
+                continue
 
     def select_model(self, car):
         print("Iltimos moshina turini tanlang:")
         
-        # for key, model in self        
+        for index, model in enumerate(car['models'], start=1):
+            print(f'{index}. {model['name']} - ${model['price']}')
         
-        # print(f"\nAvailable models for {car['type']}:")
-        # for index, model in enumerate(car['models'], start=1):
-        #     print(f"{index}. {model['name']} - ${model['price']}")
-        # while True:
-        #     try:
-        #         model_choice = int(input("Select a model by entering its number: "))
-        #         if 1 <= model_choice <= len(car['models']):
-        #             selected_model = car['models'][model_choice - 1]
-        #             print(f"You have selected: {selected_model['name']}")
-        #             return selected_model
-        #         else:
-        #             print("Invalid selection. Please try again.")
-        #     except ValueError:
-        #         print("Please enter a valid number.")
+        while True:
+            
+            try:
+                option_car = int(input("Tanlang: "))
+                user_model = car['models'][option_car - 1]
+                print(f'{user_model['name']}\'ni tanladingiz!')
+                return user_model
+            except:
+                print('Iltimos, yaroqli raqam kiriting')
+                continue
 
     def select_color(self):
-        pass
+        for key, (color, extra) in self.colors.items():
+            print(f'{key}. {color} - {extra}% qo\'shimcha')
         
-        
-        # print("\nAvailable colors:")
-        # for key, (color, extra) in self.colors.items():
-        #     print(f"{key}. {color} with {extra * 100:.0f}% extra money")
-        # while True:
-        #     try:
-        #         color_choice = int(input("Select a color by entering its number: "))
-        #         if color_choice in self.colors:
-        #             selected_color, extra = self.colors[color_choice]
-        #             print(f"You have selected: {selected_color}")
-        #             return selected_color, extra
-        #         else:
-        #             print("Invalid selection. Please try again.")
-        #     except ValueError:
-        #         print("Please enter a valid number.")
+        while True:
+            try:
+                option_color = int(input('Tanlang: '))
+                user_color, extra_price = self.colors[option_color]
+                print(f'{user_color}\'ni tanladingiz!')
+                return option_color, extra_price
+            except:                
+                print('Iltimos, yaroqli raqam kiriting')
+                continue
 
     def confirm_purchase(self, car, model, color, base_price, final_price):
-        pass
+        print(f"Type: {car['type']}")
+        print(f"Model: {model['name']}")
+        print(f"Color: {color}")
+        print(f"Final price: {final_price:.2f}")
         
+        while True:
+            confirm = input("Xarid qilasizmi? (ha/yo'q): ").lower()
+            if confirm == 'ha':
+                print("\nXarid tasdiqlandi!")
+                print("Xaridingiz uchun rahmat.")
+                break
+            elif confirm == 'yo\'q':
+                print("Xarid bekor qilindi!")
+                break
+            else:
+                print("Faqat HA yoki YO‘Q deb kiriting")
+                continue
         
-        # print("\nPlease confirm your selection:")
-        # print(f"Type: {car['type']}")
-        # print(f"Model: {model['name']}")
-        # print(f"Color: {color}")
-        # print(f"Base Price: ${base_price:.2f}")
-        # print(f"Final Price (after color adjustment): ${final_price:.2f}")
-        # while True:
-        #     confirm = input("Do you want to proceed with the purchase? (yes/no): ").lower()
-        #     if confirm == 'yes':
-        #         print("\nPurchase confirmed!")
-        #         print(f"Processing payment...\nPayment of ${final_price:.2f} completed successfully!")
-        #         print("Thank you for your purchase.")
-        #         break
-        #     elif confirm == 'no':
-        #         print("Purchase cancelled. No purchase to complete.")
-        #         break
-        #     else:
-        #         print("Please enter just YES or NO")
-        #         continue
-
     def run(self):
         selected_car = self.select_car()
-        # selected_model = self.select_model(selected_car)
-        # selected_color, extra = self.select_color()
-        # base_price = selected_model['price']
-        # final_price = base_price * (1 + extra)
-        # self.confirm_purchase(selected_car, selected_model, selected_color, base_price, final_price)
+        selected_model = self.select_model(selected_car)
+        selected_color, extra_price = self.select_color()
+        base_price = selected_model['price']
+        final_price = base_price * (1 + extra_price)
+        self.confirm_purchase(selected_car, selected_model, selected_color, base_price, final_price)
 
 if __name__ == "__main__":
     purchase = Purchase()
