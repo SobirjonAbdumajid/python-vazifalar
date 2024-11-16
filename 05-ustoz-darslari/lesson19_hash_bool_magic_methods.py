@@ -58,27 +58,39 @@
 # print(s1[2])
 
 
-# 4
-class Geom:
-    name = "Geom"
+# # 4
+# class Geom:
+#     name = "Geom"
     
-    def draw(self):
-        print('Draw geom')
+#     def draw(self):
+#         print('Draw geom')
         
-class Line(Geom):
-    name = "Line"
+# class Line(Geom):
+#     name = "Line"
     
-    def draw(self):
-        print('Draw Line')
+#     def draw(self):
+#         print('Draw Line')
 
-class Circle(Geom):
-    name = "Circle"
+# class Circle(Geom):
+#     name = "Circle"
     
-    def draw(self):
-        print('Draw Circle')
+#     def draw(self):
+#         print('Draw Circle')
      
-class Rectangle:
-    def draw(self):
-        print('Draw Rectangle')
+# class Rectangle:
+#     def draw(self):
+#         print('Draw Rectangle')
       
-print(issubclass(object, Circle))
+# print(issubclass(object, Circle))
+
+
+
+# 5
+class Product:
+    def __init__(self, name, product_id, quantity, price):
+        self.name = name
+        self.product_id = product_id
+        self.quantity = quantity
+        self.price = price
+        
+        
