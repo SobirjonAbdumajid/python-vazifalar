@@ -57,21 +57,19 @@
 # del s1[2]
 # print(s1[2])
 
+
+# 4
 class Geom:
     name = "Geom"
     
     def draw(self):
         print('Draw geom')
         
-    
-
 class Line(Geom):
     name = "Line"
     
     def draw(self):
         print('Draw Line')
-        
-    
 
 class Circle(Geom):
     name = "Circle"
@@ -79,14 +77,8 @@ class Circle(Geom):
     def draw(self):
         print('Draw Circle')
      
-        
 class Rectangle:
     def draw(self):
         print('Draw Rectangle')
       
-
 print(issubclass(object, Circle))
-
-# g = Geom()
-        
-    
