@@ -50,7 +50,7 @@ def find_car_type(cars):
         """)
         try:
             _input = int(input("Tanlang: "))
-            all_info_car = cars[_input]  # Raises KeyError if the key doesn't exist
+            all_info_car = cars[_input]
             car_category = list(all_info_car.keys())[0]
             print(f"{car_category.capitalize()} turini tanladingiz.\n")
         except (ValueError, KeyError):
@@ -77,9 +77,8 @@ def return_prices(specific_car):
                 selected_car = specific_car[car_category][str(_input)]
                 print(f"\nSiz tanlagan mashina: {selected_car['name']} - Narxi: {selected_car['price']}")
                 
-                # Convert the price to a float by removing the dollar sign and commas
                 base_price = float(selected_car['price'].replace('$', '').replace(',', ''))
-                return base_price  # Return the numeric base price for further calculations
+                return base_price
             else:
                 print("Faqat 1 dan 5 gacha bo'lgan raqamlarni kiriting.")
         except ValueError:
