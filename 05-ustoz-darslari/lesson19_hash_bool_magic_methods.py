@@ -85,7 +85,40 @@
 
 
 
-# 5
+# # 5
+# class Product:
+#     def __init__(self, name, product_id, quantity, price):
+#         self.name = name
+#         self.product_id = product_id
+#         self.quantity = quantity
+#         self.price = price
+        
+#     def __repr__(self):
+#         return f'{self.__class__.__name__}: {self.name}'
+    
+#     def __str__(self):
+#         return str(self.name)
+        
+
+# class Warehouse(Product):
+#     def __init__(self, name, product_id, quantity, price, **kwargs = ):
+#         super().__init__(name, product_id, quantity, price)
+#         self.kwargs = kwargs
+    
+#     def add_product(self, adr, product_id):
+#         self.kwargs[adr] = product_id
+        
+#     def remove_product(self, adr):
+#         del self.kwargs[adr]
+        
+#     def get_product(self):
+#         return self.kwargs
+    
+# warehouse = Warehouse('Laptop', 1, 4, 123)
+                
+
+
+# 6
 class Product:
     def __init__(self, name, product_id, quantity, price):
         self.name = name
@@ -93,4 +126,37 @@ class Product:
         self.quantity = quantity
         self.price = price
         
+    def __repr__(self):
+        return f'{self.__class__.__name__}: {self.name}'
+    
+    def __str__(self):
+        return str(self.name)
         
+
+class Warehouse(Product):
+    def __init__(self, name, product_id, quantity, price, **kwargs):
+        super().__init__(name, product_id, quantity, price)
+        self.kwargs = kwargs
+        
+    def add_product(self, adr, product_id):
+        self.kwargs[adr] = product_id
+        
+    def remove_product(self, adr):
+        if adr in self.kwargs:
+            del self.kwargs[adr]
+        else:
+            print(f"'{adr}' - not found.")
+
+    def get_product(self):
+        return self.kwargs
+    
+
+warehouse = Warehouse('Laptop', 1, 4, 123)
+
+warehouse.add_product('Shelf_1', 101)
+warehouse.add_product('Shelf_2', 102)
+
+print(warehouse.get_product())
+
+warehouse.remove_product('Shelf_1')
+print(warehouse.get_product())
