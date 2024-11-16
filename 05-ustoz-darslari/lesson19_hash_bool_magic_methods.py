@@ -15,7 +15,6 @@
 # print(hash("qeqwewqewq"))
 
 # print(None == None)
-# print(None == None)
 
 
 # 2
