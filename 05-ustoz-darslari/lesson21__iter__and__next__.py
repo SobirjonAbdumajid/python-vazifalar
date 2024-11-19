@@ -170,24 +170,98 @@
 
 
 # 8
-class Teacher:
+# from typing import override
+# class Human:
+#     def voice(self):
+#         raise NotImplementedError(self.__class__.__name__)
+
+# class Teacher(Human):
+#     def __init__(self, name: str):
+#         self.name = name
+    
+#     def voice(self):
+#         print('Maladest\nbali')
+
+    
+# class Student(Human):
+#     def __init__(self, name):
+#         self.name = name
+#     def voice(self):
+#         print('Ustoooz\nKechiring')
+        
+# class Diractor(Human):
+#     def __init__(self, name: str):
+#         self.name = name
+        
+#     def voice(self):
+#         print("bo'shadin")
+
+# teacher1 = Teacher('Ustoz1')
+# teacher2 = Teacher('Ustoz2')
+# student1 = Student('Talaba1')
+# student2 = Student('Talaba2')
+# student3 = Student('Talaba3')
+# diractor1 = Student('Talaba3')
+
+# list_of_human = [teacher1, teacher2, student1, student2, student3, diractor1]
+
+# for h in list_of_human:
+#     h.voice()
+
+
+
+class Animals:
+    def move(self):
+        raise NotImplementedError(self.__class__.__name__)
+    
+    def voice(self):
+        raise NotImplementedError(self.__class__.__name__)
+
+    
+
+class Cat(Animals):
     def __init__(self, name: str):
         self.name = name
     
+    def move(self):
+        print("walk")
+    
     def voice(self):
-        print('Maladest\nbali')
+        print('Miyov')
 
-class Student(Teacher):
+
+class Dog(Animals):
+    def __init__(self, name: str):
+        self.name = name
+    
+    def move(self):
+        print("run")
+    
     def voice(self):
-        print('Ustoooz\nKechiring')
+        print('vov')
+    
+class Bird(Animals):
+    def __init__(self, name: str):
+        self.name = name
+        
+    def move(self):
+        print("fly")
+    
+    def voice(self):
+        print('chirq')
 
-teacher1 = Teacher('Ustoz1')
-teacher2 = Teacher('Ustoz2')
-student1 = Student('Talaba1')
-student2 = Student('Talaba2')
-student3 = Student('Talaba3')
 
-list_of_human = [teacher1, teacher2, student1, student2, student3]
+def animal_behaviour(animals: list[Animals]):
+    for a in animals:
+        a.voice()
 
-for h in list_of_human:
-    h.voice()
+bird1 = Bird('Ustoz1')
+bird2 = Bird('Ustoz2')
+cat1 = Cat('Talaba1')
+cat2 = Cat('Talaba2')
+dog1 = Dog('Talaba3')
+dog2 = Dog('Talaba3')
+
+list_of_animals = [bird1, bird1, cat1, cat1, dog1, dog2]
+
+animal_behaviour(list_of_animals)
