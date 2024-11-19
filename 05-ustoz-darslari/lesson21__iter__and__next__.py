@@ -70,27 +70,50 @@
 
 
 
-# 4
-class MyIterator:
-    def __init__(self, max_value):
-        self.max_value = max_value
-        self.current = 0
+# # 4
+# class MyIterator:
+#     def __init__(self, max_value):
+#         self.max_value = max_value
+#         self.current = 0
 
+#     def __iter__(self):
+#         self.current = 0  # Boshlanish nuqtasini o'rnatamiz
+#         return self
+
+#     def __next__(self):
+#         if self.current < self.max_value:
+#             result = self.current
+#             self.current += 1
+#             return result
+#         else:
+#             raise StopIteration  # Elementlar tugaganda xatolik chiqaradi
+
+# # MyIterator obyekti
+# my_iter = MyIterator(5)
+
+# # Bu obyekt endi iterable bo‘lgani uchun `for` tsiklida foydalanish mumkin
+# for num in my_iter:
+#     print(num)
+
+
+
+# 5
+class MyIterator:
     def __iter__(self):
-        self.current = 0  # Boshlanish nuqtasini o'rnatamiz
+        self.current = 1  # Boshlanish nuqtasini o‘rnatamiz
         return self
 
     def __next__(self):
-        if self.current < self.max_value:
+        if self.current <= 3:
             result = self.current
             self.current += 1
             return result
         else:
-            raise StopIteration  # Elementlar tugaganda xatolik chiqaradi
+            raise StopIteration  # Elementlar tugaganda to‘xtatish uchun xato chiqaradi
 
 # MyIterator obyekti
-my_iter = MyIterator(5)
+my_iter = MyIterator()
 
-# Bu obyekt endi iterable bo‘lgani uchun `for` tsiklida foydalanish mumkin
+# `for` tsiklida foydalanamiz
 for num in my_iter:
     print(num)
