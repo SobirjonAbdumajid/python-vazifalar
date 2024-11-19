@@ -245,14 +245,9 @@ class Bird(Animals):
 def animal_behaviour(animals: list[Animals]):
     for a in animals:
         a.voice()
+        a.move()
 
-bird1 = Bird('Ustoz1')
-bird2 = Bird('Ustoz2')
-cat1 = Cat('Talaba1')
-cat2 = Cat('Talaba2')
-dog1 = Dog('Talaba3')
-dog2 = Dog('Talaba3')
 
-list_of_animals = [bird1, bird1, cat1, cat1, dog1, dog2]
+list_of_animals = [Bird(), Cat(), Dog()]
 
 animal_behaviour(list_of_animals)
