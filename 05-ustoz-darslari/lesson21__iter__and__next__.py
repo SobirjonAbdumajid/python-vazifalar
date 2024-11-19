@@ -143,26 +143,51 @@
 # # print(next(counter))  # StopIteration chiqariladi
 
 
-# 7
-class MyNext:
-    def __init__(self):
-        self.current = 1
+# # 7
+# class MyNext:
+#     def __init__(self):
+#         self.current = 1
         
-    def __iter__(self):
-        return self
+#     def __iter__(self):
+#         return self
     
-    def __next__(self):
-        if self.current <= 4:
-            result = self.current
-            self.current += 1
-            return result
+#     def __next__(self):
+#         if self.current <= 4:
+#             result = self.current
+#             self.current += 1
+#             return result
         
-my_next = MyNext()
+# my_next = MyNext()
 
-for i in my_next:
-    print(i)
+# for i in my_next:
+#     print(i)
 
 # print(next(my_next))
 # print(next(my_next))
 # print(next(my_next))
 # print(next(my_next))
+
+
+
+# 8
+class Teacher:
+    def __init__(self, name: str):
+        self.name = name
+    
+    def voice(self):
+        print('Maladest\nbali')
+
+class Student(Teacher):
+    def voice(self):
+        print('Ustoooz\nKechiring')
+
+teacher1 = Teacher('Ustoz1')
+teacher2 = Teacher('Ustoz2')
+student1 = Student('Talaba1')
+student2 = Student('Talaba2')
+student3 = Student('Talaba3')
+
+list_of_human = [teacher1, teacher2, student1, student2, student3]
+
+for h in list_of_human:
+    h.voice()
