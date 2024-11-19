@@ -97,23 +97,72 @@
 
 
 
-# 5
-class MyIterator:
-    def __iter__(self):
-        self.current = 1  # Boshlanish nuqtasini o‘rnatamiz
-        return self
+# # 5
+# class MyIterator:
+#     def __iter__(self):
+#         self.current = 1  # Boshlanish nuqtasini o‘rnatamiz
+#         return self
 
+#     def __next__(self):
+#         if self.current <= 3:
+#             result = self.current
+#             self.current += 1
+#             return result
+#         else:
+#             raise StopIteration  # Elementlar tugaganda to‘xtatish uchun xato chiqaradi
+
+# # MyIterator obyekti
+# my_iter = MyIterator()
+
+# # `for` tsiklida foydalanamiz
+# for num in my_iter:
+#     print(num)
+
+
+
+# # 6
+# class Counter:
+#     def __init__(self):
+#         self.current = 1  # Boshlanish nuqtasini o'rnatamiz
+
+#     def __next__(self):
+#         if self.current <= 3:
+#             result = self.current
+#             self.current += 1
+#             return result
+#         else:
+#             print("raise StopIteration  # To'xtatish uchun xato chiqaradi")
+
+# # Counter obyekti
+# counter = Counter()
+
+# # `next()` yordamida qiymatlarni chiqaramiz
+# print(next(counter))  # 1
+# print(next(counter))  # 2
+# print(next(counter))  # 3
+# # print(next(counter))  # StopIteration chiqariladi
+
+
+# 7
+class MyNext:
+    def __init__(self):
+        self.current = 1
+        
+    def __iter__(self):
+        return self
+    
     def __next__(self):
-        if self.current <= 3:
+        if self.current <= 4:
             result = self.current
             self.current += 1
             return result
-        else:
-            raise StopIteration  # Elementlar tugaganda to‘xtatish uchun xato chiqaradi
+        
+my_next = MyNext()
 
-# MyIterator obyekti
-my_iter = MyIterator()
+for i in my_next:
+    print(i)
 
-# `for` tsiklida foydalanamiz
-for num in my_iter:
-    print(num)
+# print(next(my_next))
+# print(next(my_next))
+# print(next(my_next))
+# print(next(my_next))
