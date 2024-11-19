@@ -219,10 +219,7 @@ class Animals:
 
     
 
-class Cat(Animals):
-    def __init__(self, name: str):
-        self.name = name
-    
+class Cat(Animals):    
     def move(self):
         print("walk")
     
@@ -230,20 +227,14 @@ class Cat(Animals):
         print('Miyov')
 
 
-class Dog(Animals):
-    def __init__(self, name: str):
-        self.name = name
-    
+class Dog(Animals):    
     def move(self):
         print("run")
     
     def voice(self):
         print('vov')
     
-class Bird(Animals):
-    def __init__(self, name: str):
-        self.name = name
-        
+class Bird(Animals):   
     def move(self):
         print("fly")
     
