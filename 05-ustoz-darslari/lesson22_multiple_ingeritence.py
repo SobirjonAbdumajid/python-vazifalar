@@ -67,7 +67,6 @@ class Flyable: # Flyable
     def fly(self):
         print(f"I can fly \nWing Span - {self.wing_span}")
         
-    
 
 class Swimmable: # Swimmable
     def __init__(self, swimming_speed):
@@ -75,8 +74,6 @@ class Swimmable: # Swimmable
 
     def swim(self):
         print(f"Swimming speed - {self.swimming_speed}")
-
-
 
 
 
@@ -89,8 +86,9 @@ class Duck(Animal, Flyable, Swimmable):
     def quack(self):
         print("Duck's method works")
 
+
 class Pinguin(Animal, Swimmable):
-    def __init__(self, name, species, wing_span, swimming_speed):
+    def __init__(self, name, species, swimming_speed):
         Animal.__init__(self, name, species)
         Swimmable.__init__(self, swimming_speed)
         
@@ -106,13 +104,10 @@ d1.fly()
 d1.swim()
 d1.quack()
 
-p1 = Pinguin("Pinguin1's name", "pinguin", 5, 12)
+p1 = Pinguin("Pinguin1's name", "pinguin", 5)
 p1.info()
 p1.swim()
 p1.slide()
-
-
-
 
 
 
