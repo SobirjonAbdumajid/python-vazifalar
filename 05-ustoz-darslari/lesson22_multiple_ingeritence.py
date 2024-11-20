@@ -94,8 +94,6 @@ class Pinguin(Animal, Swimmable):
         
     def slide(self):
         print("Pinguin's method works")
-        
-        
 
 
 d1 = Duck("Duck1's name", "duck", 1.5, 20)
