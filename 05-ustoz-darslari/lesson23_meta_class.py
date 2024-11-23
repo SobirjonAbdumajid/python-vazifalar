@@ -25,4 +25,3 @@ w = Women('root', '1234')
 print(w.__dict__)
 print(w.meta.__dict__)
         
-        
