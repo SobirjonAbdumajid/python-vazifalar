@@ -74,16 +74,69 @@ from dataclasses import dataclass
 # print(p1, p1.total_value)
 
 
-# 3
+# # 3
+# from dataclasses import dataclass, field
+
+# @dataclass
+# class Example:
+#     a: int
+#     b: int
+#     c: list = field(default_factory=list)
+    
+# ex = Example(1,2,[3,4,5])
+# ex.c.append(6)
+# ex2 = Example(1,2)
+# print(ex.c, ex2.c)
+
+
+# # 4
+# from dataclasses import dataclass, field
+
+# class Example:
+#     a: int
+#     b: int = field(default=2, compare=True)
+#     c: int = field()
+    
+    
+# 5
 from dataclasses import dataclass, field
 
-@dataclass
-class Example:
-    a: int
-    b: int
-    c: list = field(default_factory=list)
+# class User:
+#     def __init__(self, name: str):
+#         self.name = name
+#         self.friends = []
+#         self.posts = []
+        
+#     def add_friend(self, friend):
+#         self.friends.append(friend)
     
-ex = Example(1,2,[3,4,5])
-ex.c.append(6)
-ex2 = Example(1,2)
-print(ex.c, ex2.c)
+#     def add_post(self, post):
+#         self.posts.append(post)
+    
+#     def list_posts(self):
+#         return self.posts
+
+@dataclass
+class User:
+    name: str
+    friends: list = field(default_factory=list)
+    posts: list = field(default_factory=list)
+    
+    def add_friend(self, friend):
+        self.friends.append(friend)
+    
+    def add_post(self, post):
+        self.posts.append(post)
+    
+    def list_posts(self):
+        return self.posts
+        
+
+u1 = User("Sobirjon", [], [])
+u1.add_friend("Xabibullo")
+u1.add_friend("Sardorbek")
+u1.add_post("Xabibullo is Sobirjon's best friend ever")
+u1.add_post("Sardorbek is Sobirjon's best friend ever")
+print(u1.list_posts()) 
+
+
