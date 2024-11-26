@@ -46,27 +46,44 @@ from dataclasses import dataclass
 # print(pt2 == pt3)
 
 
+
+# # 3
+# class Product:
+#     def __init__(self, name, price, quantity):
+#         self.name = name
+#         self.price = price
+#         self.quantity = quantity
+#         self.total_value = self.price * self.quantity
+
+# @dataclass
+# class Products:
+#     name: str
+#     price: float
+#     quantity: int
+    
+#     def __post_init__(self):
+#         self.total_value = self.price * self.quantity
+
+
+
+# p1 = Product("Laptop", 123.3, 11)
+# print(p1.total_value)
+
+
+# p1 = Products(123.3, 11)
+# print(p1, p1.total_value)
+
+
 # 3
-class Product:
-    def __init__(self, name, price, quantity):
-        self.name = name
-        self.price = price
-        self.quantity = quantity
-        self.total_value = self.price * self.quantity
+from dataclasses import dataclass, field
 
 @dataclass
-class Products:
-    price: float
-    quantity: int
+class Example:
+    a: int
+    b: int
+    c: list = field(default_factory=list)
     
-    def __post_init__(self):
-        self.total_value = self.price * self.quantity
-
-
-
-p1 = Product("Laptop", 123.3, 11)
-print(p1.total_value)
-
-
-p1 = Products(123.3, 11)
-print(p1, p1.total_value)
+ex = Example(1,2,[3,4,5])
+ex.c.append(6)
+ex2 = Example(1,2)
+print(ex.c, ex2.c)
