@@ -98,8 +98,8 @@ from dataclasses import dataclass
 #     c: int = field()
     
     
-# 5
-from dataclasses import dataclass, field
+# # 5
+# from dataclasses import dataclass, field
 
 # class User:
 #     def __init__(self, name: str):
@@ -116,27 +116,61 @@ from dataclasses import dataclass, field
 #     def list_posts(self):
 #         return self.posts
 
-@dataclass
-class User:
-    name: str
-    friends: list = field(default_factory=list)
-    posts: list = field(default_factory=list)
+# u1 = User("Sobirjon", [], [])
+# u1.add_friend("Xabibullo")
+# u1.add_friend("Sardorbek")
+# u1.add_post("Xabibullo is Sobirjon's best friend ever")
+# u1.add_post("Sardorbek is Sobirjon's best friend ever")
+# print(u1.list_posts()) 
+
+
+# # 6
+# from dataclasses import dataclass, field
+
+# @dataclass
+# class User:
+#     name: str
+#     friends: list = field(default_factory=list)
+#     posts: list = field(default_factory=list)
     
-    def add_friend(self, friend):
-        self.friends.append(friend)
+#     def add_friend(self, friend):
+#         self.friends.append(friend)
     
-    def add_post(self, post):
-        self.posts.append(post)
+#     def add_post(self, post):
+#         self.posts.append(post)
     
-    def list_posts(self):
-        return self.posts
+#     def list_posts(self):
+#         return self.posts
         
 
-u1 = User("Sobirjon", [], [])
-u1.add_friend("Xabibullo")
-u1.add_friend("Sardorbek")
-u1.add_post("Xabibullo is Sobirjon's best friend ever")
-u1.add_post("Sardorbek is Sobirjon's best friend ever")
-print(u1.list_posts()) 
+# u1 = User("Sobirjon", [], [])
+# u1.add_friend("Xabibullo")
+# u1.add_friend("Sardorbek")
+# u1.add_post("Xabibullo is Sobirjon's best friend ever")
+# u1.add_post("Sardorbek is Sobirjon's best friend ever")
+# print(u1.list_posts()) 
 
 
+# 7
+from dataclasses import dataclass, field
+
+@dataclass
+class Queue:
+    default: list = field(default_factory=list)
+
+    def add_task(self, task):
+        self.default.append(task)
+        
+    def next_task(self):
+        return self.default.pop()
+    
+    def list_task(self):
+        return self.default
+
+q1 = Queue()
+q1.add_task("task1")
+q1.add_task("task2")
+q1.add_task("task3")
+print(q1.list_task())
+print(q1.next_task())
+print(q1.list_task())
