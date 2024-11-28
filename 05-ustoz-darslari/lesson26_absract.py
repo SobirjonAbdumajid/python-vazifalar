@@ -126,7 +126,7 @@
 # 4
 class Stuffs:
     def degree(self):
-        raise NotImplementedError("subclasses.")
+        raise NotImplementedError("subclasses")
 
 class Guard(Stuffs):
     def degree(self):
