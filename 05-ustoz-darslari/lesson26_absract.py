@@ -98,25 +98,49 @@
 # print(circle.info())
 
 
-class Bank:
-    def __init__(self, balance: float):
-        self.balance = balance
+# # 4
+# class Bank:
+#     def __init__(self, balance: float):
+#         self.balance = balance
         
-    def add(self, new_balance):
-        self.balance += new_balance
+#     def add(self, new_balance):
+#         self.balance += new_balance
     
-    def get(self, payment):
-        self.balance -= payment
+#     def get(self, payment):
+#         self.balance -= payment
     
-    def balance(self):
-        return f"your balance {self.balance}"
+#     def balance(self):
+#         return f"your balance {self.balance}"
         
-b1 = Bank(1000.1)
+# b1 = Bank(1000.1)
 
-print(b1.balance)
+# print(b1.balance)
 
-b1.add(500.255)
-print(b1.balance)
+# b1.add(500.255)
+# print(b1.balance)
 
-b1.get(200.91)
-print(b1.balance)
+# b1.get(200.91)
+# print(b1.balance)
+
+
+# 4
+class Stuffs:
+    def degree(self):
+        raise NotImplementedError("subclasses.")
+
+class Guard(Stuffs):
+    def degree(self):
+        print("i am guard")
+        
+class Developer(Stuffs):
+    def degree(self):
+        print("i am developer")
+        
+class Receptionist(Stuffs):
+    def degree(self):
+        print("i am Receptionist")
+
+s1 = Guard()
+s2 = Developer()
+s1.degree()
+s2.degree()
