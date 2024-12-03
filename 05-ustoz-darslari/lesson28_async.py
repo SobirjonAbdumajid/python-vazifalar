@@ -54,7 +54,36 @@
 #     asyncio.run(main(), debug=True)
 
 
-# 4
+# # 4
+# import asyncio
+
+# async def fetch_data(name:str, delay: int):
+#     print(f"Fetiching {name} in {delay}")
+#     await asyncio.sleep(delay)
+#     print(f"Finished {name} in {delay}")
+
+# async def process_data(data:dict) -> None:
+#     print("Started...")
+#     keys = list(data.keys())
+#     values = list(data.values())
+#     data_of = [fetch_data(keys[i], values[i]) for i in range(len(data))]
+#     await asyncio.gather(*data_of)
+#     print("...Ended")
+
+
+# apis = {
+#     "Review Api": 2,
+#     "User Api": 5,
+#     "Product Api": 4,
+#     "Owner Api": 3,
+#     "Orders Api": 6
+# }
+
+# if __name__ == "__main__":
+#     asyncio.run(process_data(apis), debug=True)
+    
+    
+# 5
 import asyncio
 
 async def fetch_data(name:str, delay: int):
@@ -63,13 +92,25 @@ async def fetch_data(name:str, delay: int):
     print(f"Finished {name} in {delay}")
 
 async def process_data(data:dict) -> None:
-    print("Started...")
-    keys = list(data.keys())
-    values = list(data.values())
-    data_of = [fetch_data(keys[i], values[i]) for i in range(len(data))]
-    await asyncio.gather(*data_of)
-    print("...Ended")
+    print(f"Started...{data}")
+    for k, v in data.items():
+        apis[k] = v
+        await asyncio.sleep(2)
+        
+    print(f"...Ended {apis}")
 
+
+async def main():
+    new_apis = {
+        "Review Api": 2,
+        "User Api": 5,
+        "Product Api": 4
+    }
+    
+    process_task = process_data(new_apis)
+    fetch_tasks = [fetch_data(name, delay) for name, delay in apis.items()]
+    
+    await asyncio.gather(process_task, *fetch_tasks)    
 
 apis = {
     "Review Api": 2,
@@ -81,4 +122,3 @@ apis = {
 
 if __name__ == "__main__":
     asyncio.run(process_data(apis), debug=True)
-    
