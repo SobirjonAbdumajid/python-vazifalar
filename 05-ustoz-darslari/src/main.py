@@ -1,5 +1,3 @@
-
-
 class Login:
     logic_param = 10
 

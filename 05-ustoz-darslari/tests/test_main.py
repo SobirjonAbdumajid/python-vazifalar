@@ -27,7 +27,11 @@ def test_sum_fail():
 
 
 def test_sum_negative_numbers():
-    assert find_sum(-1, -2) == -3
+    a = -1
+    b = 2/3
+    result = a + b
+    assert find_sum(a, b) == result
+    # pytest.raises(TypeError, find_sum, a, b)
 
 
 def test_sum_with_list():
@@ -38,3 +42,15 @@ def test_sum_with_list():
 
 def test_sum_large_numbers():
     assert find_sum(1000000, 2000000) == 3000000
+
+
+
+@pytest.mark.parametrize(
+    "num1, num2, expected",
+    [
+        (1,1,2),
+        # (1, '1', TypeError)
+    ]
+)
+def test_find_sum(num1, num2, expected):
+    assert find_sum(num1, num2) == expected
