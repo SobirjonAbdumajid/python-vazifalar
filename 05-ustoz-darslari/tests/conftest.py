@@ -4,8 +4,9 @@ import pytest
 
 
 @pytest.fixture
-def example_data():
+def example_data(): 
     return {"name": "Sobirjon", "age": 19}
+
 
 @pytest.fixture
 def temp_file():
