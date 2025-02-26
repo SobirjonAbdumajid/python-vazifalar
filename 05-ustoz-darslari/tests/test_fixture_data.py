@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.fixture(scope='session', autouse=False)
+@pytest.fixture(scope='session', autouse=True)
 def mock_user_data():
     print("\nSession scope fixture was opened")
     users = {
@@ -13,7 +13,7 @@ def mock_user_data():
     print("\nSession scope fixture was closed")
 
 
-def test_user_data_1(mock_user_data):
+def test_user_data_1():
     pass
     # assert mock_user_data["id"] == 1
     # assert mock_user_data["username"] == "alice"
