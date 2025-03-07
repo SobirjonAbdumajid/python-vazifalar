@@ -1,91 +1,89 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
-from datetime import datetime
 
 
-class ParkingSpot(ABC):
-    def __init__(self, spot_id: int, is_free: bool = True):
-        self.id = spot_id
-        self.is_free = is_free
+class Abstraction:
+    """
+    The Abstraction defines the interface for the "control" part of the two
+    class hierarchies. It maintains a reference to an object of the
+    Implementation hierarchy and delegates all of the real work to this object.
+    """
 
-    def get_is_free(self):
-        return self.is_free
+    def __init__(self, implementation: Implementation) -> None:
+        self.implementation = implementation
 
-
-class Vehicle(ABC):
-    def __init__(self, license_no: str):
-        self.license_no = license_no
-
-    def assign_ticket(self):
-        return self.license_no
+    def operation(self) -> str:
+        return (f"Abstraction: Base operation with:\n"
+                f"{self.implementation.operation_implementation()}")
 
 
-class ParkingTicket:
-    def __init__(self, car_no: str, amount: float = 0.0):
-        self.car_no = car_no
-        self.timestamp = datetime.now()
-        self.exit_time = None
-        self.amount = amount
-        self.payment = None
+class ExtendedAbstraction(Abstraction):
+    """
+    You can extend the Abstraction without changing the Implementation classes.
+    """
 
-    def make_payment(self):
-        user_payment = float(input("Enter your payment amount: "))
-        price_per_our = 10
-        paid_time = user_payment / price_per_our
-        # self.payment = user_payment
-        # self.exit_time = self.timestamp + paid_time
-        # print(self.exit_time, paid_time)
-        print(f"Paid till {paid_time} hours for: {self.car_no}")
+    def operation(self) -> str:
+        return (f"ExtendedAbstraction: Extended operation with:\n"
+                f"{self.implementation.operation_implementation()}")
 
 
-class Payment(ABC):
-    def __init__(self, amount: float, status: str):
-        self.amount = amount
-        self.status = status
-        self.timestamp = datetime.now()
+class Implementation(ABC):
+    """
+    The Implementation defines the interface for all implementation classes. It
+    doesn't have to match the Abstraction's interface. In fact, the two
+    interfaces can be entirely different. Typically the Implementation interface
+    provides only primitive operations, while the Abstraction defines higher-
+    level operations based on those primitives.
+    """
 
     @abstractmethod
-    def initiate_transaction(self):
+    def operation_implementation(self) -> str:
         pass
 
 
-class CashPayment(Payment):
-    def initiate_transaction(self):
-        self.status = "Completed"
-        print("Cash payment processed.")
+"""
+Each Concrete Implementation corresponds to a specific platform and implements
+the Implementation interface using that platform's API.
+"""
 
 
-class CreditCardPayment(Payment):
-    def initiate_transaction(self):
-        self.status = "Completed"
-        print("Credit card payment processed.")
+class ConcreteImplementationA(Implementation):
+    def operation_implementation(self) -> str:
+        return "ConcreteImplementationA: Here's the result on the platform A."
 
 
-class Entrance:
-    def __init__(self, entrance_id: int):
-        self.id = entrance_id
-
-    def get_ticket(self, car_no: str) -> ParkingTicket:
-        p = ParkingTicket(car_no)
-        p.make_payment()
-        return
+class ConcreteImplementationB(Implementation):
+    def operation_implementation(self) -> str:
+        return "ConcreteImplementationB: Here's the result on the platform B."
 
 
-class Exit:
-    def __init__(self, exit_id: int):
-        self.id = exit_id
+def client_code(abstraction: Abstraction) -> None:
+    """
+    Except for the initialization phase, where an Abstraction object gets linked
+    with a specific Implementation object, the client code should only depend on
+    the Abstraction class. This way the client code can support any abstraction-
+    implementation combination.
+    """
 
-    def validate_ticket(self, ticket: ParkingTicket):
-        if ticket.payment and ticket.payment.status == "Completed":
-            print("Ticket validated. You may exit.")
-        else:
-            print("Payment required before exit.")
+    # ...
 
+    print(abstraction.operation(), end="")
 
-def run():
-    entrance = Entrance(1)
-    ticket = entrance.get_ticket("01ABS001")
-    # print(ticket)
+    # ...
 
 
 if __name__ == "__main__":
-    run()
+    """
+    The client code should be able to work with any pre-configured abstraction-
+    implementation combination.
+    """
+
+    implementation = ConcreteImplementationA()
+    abstraction = Abstraction(implementation)
+    client_code(abstraction)
+
+    print("\n")
+
+    implementation = ConcreteImplementationB()
+    abstraction = ExtendedAbstraction(implementation)
+    client_code(abstraction)
