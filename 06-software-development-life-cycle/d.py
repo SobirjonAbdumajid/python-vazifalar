@@ -16,58 +16,86 @@ class Payment:
     status: PaymentStatus
     timestamp: datetime
 
-    def initiate_transaction(self):
-        self.status = PaymentStatus.COMPLETED  # Imitatsiya uchun
-
 
 class ParkingSpot(ABC):
-    def __init__(self, id_: int, is_free: bool = True):
-        self.id = id_
-        self.is_free = is_free
-
     @abstractmethod
     def get_is_free(self) -> bool:
-        return self.is_free
-
-
-class Large(ParkingSpot):
-    def get_is_free(self) -> bool:
-        return self.is_free
-
-
-class Compact(ParkingSpot):
-    def get_is_free(self) -> bool:
-        return self.is_free
-
-
-class Handicapped(ParkingSpot):
-    def get_is_free(self) -> bool:
-        return self.is_free
+        pass
 
 
 class Vehicle(ABC):
-    def __init__(self, license_no: str):
-        self.license_no = license_no
-        self.ticket = None
-
-    def assign_ticket(self, ticket: 'ParkingTicket'):
-        self.ticket = ticket
+    pass
 
 
+# Parking Spots
+class Motorcycle(ParkingSpot):
+    def __init__(self):
+        self.is_free = True
+
+    def get_is_free(self) -> bool:
+        return self.is_free
+
+
+@dataclass
+class Compact(ParkingSpot):
+    id: int
+    is_free: bool
+
+    def get_is_free(self) -> bool:
+        return self.is_free
+
+
+@dataclass
+class Handicapped(ParkingSpot):
+    id: int
+    is_free: bool = True
+
+    def get_is_free(self) -> bool:
+        return self.is_free
+
+    def get_ticket(self) -> 'ParkingTicket':
+        return ParkingTicket(ticket_no=self.id, entry_time=datetime.now())
+
+
+# Vehicles
+@dataclass
 class Car(Vehicle):
-    pass
+    plate_number: str
 
 
-class Truck(Vehicle):
-    pass
+@dataclass
+class Truck(Car):
+    ticket_no: int
+    entry_time: datetime
+    exit_time: datetime = None
+    amount: float = 0.0
+    payment: Payment = None
 
 
-class Motorcycle(Vehicle):
-    pass
+@dataclass
+class MotorVehicle(Car):
+    payment: Payment
 
 
-class Van(Vehicle):
-    pass
+@dataclass
+class Van(Car):
+    amount: float
+    status: PaymentStatus
+    timestamp: datetime
+
+    def initiate_transaction(self):
+        self.payment = Payment(amount=self.amount, status=PaymentStatus.PENDING, timestamp=datetime.now())
+        print(f"Transaction initiated for {self.amount}")
+
+
+# Parking System Components
+@dataclass
+class Entrance:
+    id: int
+
+    def get_ticket(self) -> 'ParkingTicket':
+        print(f"Ticket issued at entrance {self.id}")
+        return ParkingTicket(ticket_no=self.id, entry_time=datetime.now())
 
 
 @dataclass
@@ -78,38 +106,29 @@ class ParkingTicket:
     amount: float = 0.0
     payment: Payment = None
 
-    def close_ticket(self, amount: float):
-        self.exit_time = datetime.now()
-        self.amount = amount
-        self.payment = Payment(amount, PaymentStatus.COMPLETED, datetime.now())
-
-
-@dataclass
-class Entrance:
-    id: int
-
-    def get_ticket(self) -> ParkingTicket:
-        return ParkingTicket(ticket_no=1001, entry_time=datetime.now())
-
 
 @dataclass
 class Exit:
     id: int
 
     def validate_ticket(self, ticket: ParkingTicket):
-        if ticket.exit_time is None:
-            ticket.close_ticket(10.0)  # Misol uchun narx
-            return "To'lov bajarildi"
-        return "Ticket allaqachon yopilgan"
+        ticket.exit_time = datetime.now()
+        ticket.amount = 10.0  # Assuming a fixed charge
+        ticket.payment = Payment(amount=ticket.amount, status=PaymentStatus.COMPLETED, timestamp=ticket.exit_time)
+        print(f"Ticket {ticket.ticket_no} validated at exit {self.id}. Amount: {ticket.amount}")
 
 
-# Test qilish
-entrance = Entrance(1)
-ticket = entrance.get_ticket()
+def main():
+    entrance = Entrance(id=1)
+    exit_gate = Exit(id=1)
 
-car = Car(license_no="ABC123")
-car.assign_ticket(ticket)
+    ticket = entrance.get_ticket()
+    print(f"Ticket {ticket.ticket_no} issued at {ticket.entry_time}")
 
-exit_gate = Exit(1)
-print(exit_gate.validate_ticket(ticket))  # "To'lov bajarildi"
-print(exit_gate.validate_ticket(ticket))  # "Ticket allaqachon yopilgan"
+    # Simulating exit after some time
+    exit_gate.validate_ticket(ticket)
+    print(f"Exit time: {ticket.exit_time}, Payment status: {ticket.payment.status}")
+
+
+if __name__ == "__main__":
+    main()
