@@ -29,12 +29,12 @@ class ParkingTicket:
 
     def make_payment(self):
         user_payment = float(input("Enter your payment amount: "))
-        price_per_hour = 10  # Fixed typo 'our' to 'hour'
+        price_per_hour = 10
         paid_time = user_payment / price_per_hour
-        self.payment = CashPayment(user_payment, "Pending")  # Assign a payment object
-        self.payment.initiate_transaction()  # Process the payment
-        self.exit_time = self.timestamp + timedelta(hours=paid_time)  # Uncommented and fixed
-        print(f"Paid till {self.exit_time} for: {self.car_no}")
+        self.payment = CashPayment(user_payment, "Pending")
+        self.payment.initiate_transaction()
+        self.exit_time = self.timestamp + timedelta(hours=paid_time)
+        print(f"Paid till {self.exit_time.date()} for: {self.car_no}")
 
 
 class Payment(ABC):
@@ -42,6 +42,7 @@ class Payment(ABC):
         self.amount = amount
         self.status = status
         self.timestamp = datetime.now()
+
 
     @abstractmethod
     def initiate_transaction(self):
@@ -67,7 +68,7 @@ class Entrance:
     def get_ticket(self, car_no: str) -> ParkingTicket:
         p = ParkingTicket(car_no)
         p.make_payment()
-        return p  # Fixed: return the ticket object
+        return p
 
 
 class Exit:
@@ -85,7 +86,6 @@ def run():
     entrance = Entrance(1)
     ticket = entrance.get_ticket("01ABS001")
 
-    # Test the exit validation
     exit_gate = Exit(1)
     exit_gate.validate_ticket(ticket)
 
