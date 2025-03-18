@@ -64,7 +64,7 @@ options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Apple
 driver = webdriver.Chrome(options=options)
 
 # Google sahifasiga kirish
-driver.get("https://openbudget.uz/boards/initiatives")
+driver.get("https://openbudget.uz/boards/initiatives    ")
 time.sleep(2)
 
 # Qidiruv maydonini topish va so‘rov kiritish
