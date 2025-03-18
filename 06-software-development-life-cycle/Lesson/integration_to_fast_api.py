@@ -1,17 +1,28 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
-from factory import *
+from Lesson.factory import LibraryResource, ResourceFactory, ResourceNotificationManager, \
+    EmailNotification, PushNotification, SMSNotification, Dict
 
 app = FastAPI(title="Library Management System")
+
+# In-memory storage
+resources: Dict[int, LibraryResource] = {}
+notifications_history: List[dict] = []
 
 
 class ResourceCreate(BaseModel):
     resource_type: str
     title: str
     author: Optional[str] = None
-    issue: Optional[str] = None
+    isbn: Optional[str] = None
+    publisher: Optional[str] = None
+    volume: Optional[int] = None
+    issue: Optional[int] = None
+    field: Optional[str] = None
     format: Optional[str] = None
+    size: Optional[float] = None
+    duration: Optional[int] = None
 
 
 class NotificationRequest(BaseModel):
@@ -19,23 +30,14 @@ class NotificationRequest(BaseModel):
     channels: List[str]
 
 
-resources = {}
-notifications_history = []
-
-
-@app.post("/resources")
+@app.post("/resources/")
 async def create_resource(resource: ResourceCreate):
+    resource_data = resource.dict(exclude_unset=True)
+    resource_data["resource_id"] = len(resources) + 1
     try:
-        resource_obj = ResourceFactory.create_resource(
-            resource.resource_type,
-            title=resource.title,
-            author=resource.author,
-            issue=resource.issue,
-            format=resource.format
-        )
-        resource_id = len(resources) + 1
-        resources[resource_id] = resource_obj
-        return {"id": resource_id, "details": resource_obj.get_details()}
+        resource_obj = ResourceFactory.create_resource(resource.resource_type, resource_data)
+        resources[resource_data["resource_id"]] = resource_obj
+        return {"id": resource_data["resource_id"], "details": resource_obj.get_details()}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -44,15 +46,16 @@ async def create_resource(resource: ResourceCreate):
 async def get_resource(id: int):
     resource = resources.get(id)
     if not resource:
-        raise HTTPException(status_code=404, detail="Resource not found")
-    return {"id": id, "details": resource.get_details()}
+        raise HTTPException(status_code=200, detail="Out of stock")
+    return {"id": id, "details": resource.get_details(), "available": resource.check_available()}
 
 
-@app.post("/notifications")
+@app.post("/notifications/")
 async def send_notification(resource_id: int, notification: NotificationRequest):
+
     resource = resources.get(resource_id)
     if not resource:
-        raise HTTPException(status_code=404, detail="Resource not found")
+        raise HTTPException(status_code=200, detail="Out of stock")
 
     channels = []
     for channel_type in notification.channels:
