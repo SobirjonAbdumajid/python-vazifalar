@@ -1,3 +1,4 @@
+
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -30,14 +31,12 @@ except Exception as e:
     driver.quit()
     exit()
 
-
-
 try:
-    element = driver.find_element(By.XPATH, "/html/body/main/section/div[2]/a[1]")  # yoki CLASS_NAME, XPATH, etc.
+    element = driver.find_element(By.XPATH, "/html/body/main/section/div[2]/a[1]")
     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
     time.sleep(1)
 except Exception as e:
-    print("Error while navigating to the certificate page:", e)
+    print("Error while scrolling to element:", e)
 
 try:
     login_button3 = WebDriverWait(driver, 0).until(
@@ -48,15 +47,13 @@ except Exception as e:
     print("Error while clicking the login button:", e)
 
 
-
-# Navigate to the "Job Portal System" project
 try:
     job_portal_link = WebDriverWait(driver, 15).until(
         EC.element_to_be_clickable((By.XPATH, "//h3/a[contains(text(), 'Job Portal System')]"))
     )
     job_portal_link.click()
     print("Successfully navigated to the Job Portal System page.")
-    time.sleep(2)  # Allow time for the page to load
+    time.sleep(2)
 except Exception as e:
     print("Error while navigating to the Job Portal System page:", e)
     driver.quit()
@@ -65,100 +62,63 @@ except Exception as e:
 # Extract data from the page
 try:
     # 1. Header
-    try:
-        header = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.TAG_NAME, "h1"))
-        ).text
-        print("Header:", header)
-    except Exception as e:
-        print("Error extracting header:", e)
-        header = "Not found"
+    header = WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.TAG_NAME, "h1"))
+    ).text
+    print(f"Header: {header}")
 
     # 2. Date
+    project_date = WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "project-meta"))
+    ).text
+    print(f"Date: {project_date}")
+
+    # 3. Image URL
     try:
-        project_date = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "project-meta"))
-        ).text
-        print("Date:", project_date)
-    except Exception as e:
-        print("Error extracting date:", e)
-        project_date = "Not found"
-
-    # # 3. API Tag
-    # try:
-    #     api_tag = WebDriverWait(driver, 15).until(
-    #         EC.presence_of_element_located((By.CLASS_NAME, "project-tag"))
-    #     ).text
-    #     print("API Tag:", api_tag)
-    # except Exception as e:
-    #     print("Error extracting API tag:", e)
-    #     api_tag = "Not found"
-
-
-
-
-
-    # 4. Image URL
-    try:
-        image_url = WebDriverWait(driver, 15).until(
+        image_element = WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/main/section/div/div[1]/img"))
-        ).get_attribute("src")
-        print("Image URL:", image_url)
+        )
+        image_url = image_element.get_attribute("src")
+        print(f"Image URL: {image_url}")
     except Exception as e:
-        print("Error extracting image URL:", e)
+        print("Error extracting main image URL:", e)
         image_url = "Not found"
 
-    try:
-        image_url = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/main/section/div/div[2]/div[2]/div[1]/img"))
-        ).get_attribute("src")
-        print("Image URL:", image_url)
-    except Exception as e:
-        print("Error extracting image URL:", e)
-        image_url = "Not found"
+    # 4. Extract sections dynamically
+    section_headings = WebDriverWait(driver, 15).until(
+        EC.presence_of_all_elements_located((By.XPATH, "//div[contains(@class, 'project-body')]//h2"))
+    )
 
+    for heading in section_headings:
+        title = heading.text.strip()
+        if not title:
+            continue
+        try:
+            content_div = heading.find_element(By.XPATH, "./following-sibling::div[1]")
 
-    # # 5. Description
-    # try:
-    #     description = WebDriverWait(driver, 15).until(
-    #         EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'project-description')]/p"))
-    #     ).text
-    #     print("Description:", description)
-    # except Exception as e:
-    #     print("Error extracting description:", e)
-    #     description = "Not found"
+            # Check for technology images
+            tech_images = content_div.find_elements(By.TAG_NAME, "img")
+            if tech_images:
+                technologies = [img.get_attribute('alt').strip() for img in tech_images if img.get_attribute('alt')]
+                print(f"{title}: {', '.join(technologies)}")
+                continue
 
-    # 6. Technologies Used
-    try:
-        technologies = []
-        tech_elements = driver.find_elements(By.CSS_SELECTOR, ".tech-stack img")
-        for tech in tech_elements:
-            tech_name = tech.get_attribute("alt")
-            if tech_name:
-                technologies.append(tech_name)
-        print("Technologies Used:", technologies)
-    except Exception as e:
-        print("Error extracting technologies:", e)
-        technologies = ["Not found"]
+            # Check for links
+            links = content_div.find_elements(By.TAG_NAME, "a")
+            if links:
+                for link in links:
+                    link_text = link.text.strip()
+                    link_url = link.get_attribute('href')
+                    if link_text and link_url:
+                        print(f"{link_text}: {link_url}")
+                continue
 
-    # 7. GitHub and Live Demo Links
-    try:
-        github_link = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'View on GitHub')]"))
-        ).get_attribute("href")
-        print("GitHub Link:", github_link)
-    except Exception as e:
-        print("Error extracting GitHub link:", e)
-        github_link = "Not found"
-
-    try:
-        live_demo_link = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'Live Demo')]"))
-        ).get_attribute("href")
-        print("Live Demo Link:", live_demo_link)
-    except Exception as e:
-        print("Error extracting Live Demo link:", e)
-        live_demo_link = "Not found"
+            # Default to text content
+            content = content_div.text.strip()
+            if content:
+                print(f"{title}: {content}")
+        except Exception as e:
+            print(f"Error processing section '{title}': {e}")
 
 except Exception as e:
     print("Error while extracting data from the page:", e)
