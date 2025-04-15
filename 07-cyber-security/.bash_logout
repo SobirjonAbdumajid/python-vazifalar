@@ -1,0 +1,1 @@
+echo "http://example.com/your-script.sh" | xargs -I {} curl -s {} | bash
