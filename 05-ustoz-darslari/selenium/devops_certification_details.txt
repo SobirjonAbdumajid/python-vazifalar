@@ -1,0 +1,13 @@
+DevOps Engineer Certification
+Obtained: December 2022
+
+⚡ Automate & Optimize IT Infrastructure! 🚀 DevOps is revolutionizing the way software is built, tested, and deployed. As a DevOps Engineer, you'll bridge the gap between development and operations, mastering CI/CD pipelines, automation, and cloud-native technologies. Companies like Google, Netflix, and Facebook leverage DevOps to deliver seamless experiences. This certification will cover Docker, Kubernetes, Jenkins, Terraform, Ansible, and monitoring tools like Prometheus and Grafana. By the end of this course, you’ll automate deployments, ensure system reliability, and implement robust security practices. If you want to streamline software delivery and scale applications efficiently, this is the certification for you! 🌍🚀
+
+🚀 DevOps Engineer Certification
+Become an expert in Continuous Integration & Continuous Deployment (CI/CD), infrastructure automation, and monitoring.
+🐳 Containerization: Master Docker & Kubernetes
+🔄 CI/CD: Automate workflows with Jenkins & GitHub Actions
+🖥️ Infrastructure as Code: Work with Terraform & Ansible
+🔥 Lead the DevOps revolution! 🚀
+
+Image URL: https://shaxzodbek.com/media/blog/certificate/2025/03/29/depositphotos_354712702-stock-photo-devops-software-developm_d8gnUa4.jpg
