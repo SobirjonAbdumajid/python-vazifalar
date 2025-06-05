@@ -1,0 +1,3 @@
+Title: Library Management System
+Description: A showcase of my projects, articles, and professional journey.
+URL: https://shaxzodbek.com/projects/library-management-system/
