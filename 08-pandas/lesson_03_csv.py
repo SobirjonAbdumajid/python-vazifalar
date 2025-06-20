@@ -8,4 +8,4 @@ df = pd.read_csv('files/talabalar.csv')
 # print("Columns:", df.columns)
 # print(df.describe())       # Statistika
 
-# print(df)
+print(df[['Ism', 'Yosh']] )
